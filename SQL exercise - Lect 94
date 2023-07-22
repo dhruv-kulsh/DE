@@ -14,3 +14,11 @@ where order_status in ('COMPLETE', 'CLOSED')
 and to_char(order_date, 'yyyy-MM') = '2014-01'
 order by 4 desc, 1 asc 
 
+Q 5)
+select distinct d.*, count(product_id) over(partition by department_id) as product_count
+from departments d join categories c
+on d.department_id = c.category_department_id
+join products p on 
+c.category_id = p.product_category_id
+order by department_id asc
+
