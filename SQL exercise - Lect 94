@@ -22,3 +22,15 @@ join products p on
 c.category_id = p.product_category_id
 order by department_id asc
 
+or
+
+SELECT d.department_id,
+    d.department_name,
+    count(*) AS department_count
+FROM departments AS d
+    JOIN categories AS c
+        ON d.department_id = c.category_department_id
+    JOIN products AS p
+        ON c.category_id = p.product_category_id
+GROUP BY 1, 2
+ORDER BY 1
